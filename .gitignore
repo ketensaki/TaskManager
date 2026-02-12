@@ -1,0 +1,17 @@
+# Visual Studio / C# / .NET
+bin/
+obj/
+*.user
+*.suo
+*.vscode/
+*.vs/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Old code
+
+Old_code/
