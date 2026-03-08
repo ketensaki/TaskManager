@@ -11,25 +11,34 @@ namespace csharpik
     class TaskItem
     {
         private static int idCount = 0;
-        private int id;
+        public int Id { get; private set; }
         public string? title { get; private set; }
         public TaskStatus status { get; private set; }
-        private int priority;
+        private int? priority;
+        public int? Priority { get { return priority; } set { priority = value; } }
         public DateTime createdAt { get; private set; }
 
-        public TaskItem(string? title, TaskStatus status, int priority)
+        public TaskItem(string? title, TaskStatus status, int Priority)
         {
-            this.id = ++idCount;
             this.title = title;
             this.status = status;
-            this.priority = priority;
+            SetPriority(Priority);
+            this.Id = ++idCount;
             this.createdAt = DateTime.Now;
         }
         public string ToString()
         {
-            return $"#{this.id} | {title} | {status} | Priority: {priority} | {createdAt}";
+            return $"#{this.Id} | {title} | {status} | Priority: {Priority} | {createdAt}";
         }
 
+        public void SetPriority(int p)
+        {
 
+            if (p < 1 || p > 5)
+                throw new ArgumentOutOfRangeException("Приоритет не верный!");
+            Priority = p;
+
+        }
+        
     }
 }
