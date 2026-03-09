@@ -21,7 +21,7 @@ namespace csharpik
             "1 - Создать задачу.",
             "2 - Просмотр списка задач.",
             "3 - Найти задачу.",
-            "0 - Выход.\n",
+            "0 - Выход.",
             };
             bool stop = false;
             TaskManager taskManager = new TaskManager();
@@ -34,6 +34,7 @@ namespace csharpik
                 {
                     Print(line);
                 }
+                System.Console.WriteLine(new string('-', 30));
                 string? a = Console.ReadLine();
                 switch (a)
                 {
