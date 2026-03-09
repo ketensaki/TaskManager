@@ -26,7 +26,7 @@ namespace csharpik
             this.Id = ++idCount;
             this.createdAt = DateTime.Now;
         }
-        public string ToString()
+        public override string ToString()
         {
             return $"#{this.Id} | {title} | {status} | Priority: {Priority} | {createdAt}";
         }
@@ -35,10 +35,10 @@ namespace csharpik
         {
 
             if (p < 1 || p > 5)
-                throw new ArgumentOutOfRangeException("Приоритет не верный!");
+                throw new ArgumentOutOfRangeException();
             Priority = p;
 
         }
-        
+
     }
 }

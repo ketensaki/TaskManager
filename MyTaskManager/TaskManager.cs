@@ -1,8 +1,10 @@
+using System.Data.Common;
+
 namespace csharpik
 {
     class TaskManager
     {
-        private List<TaskItem>? tasks = new();
+        private List<TaskItem> tasks = new();
 
         public void AddTask(TaskItem task)
         {
@@ -11,16 +13,22 @@ namespace csharpik
 
         public void CreateTask()
         {
-            System.Console.WriteLine("Введите название задачи");
-            string name = Console.ReadLine();
 
-            try{
-            System.Console.WriteLine("Введите приоритет задачи. (1-5)");
-            int priority = Convert.ToInt32(System.Console.ReadLine());
-            TaskItem tasks = new TaskItem(name, TaskStatus.New, priority);
-            AddTask(tasks);
+
+            try
+            {
+                System.Console.WriteLine("Введите название задачи");
+                string? name = Console.ReadLine();
+                if(string.IsNullOrWhiteSpace(name))
+                    throw new ArgumentNullException();
+                System.Console.WriteLine("Введите приоритет задачи. (1-5)");
+                int priority = Convert.ToInt32(System.Console.ReadLine());
+                TaskItem tasks = new TaskItem(name, TaskStatus.New, priority);
+                AddTask(tasks);
             }
-            catch(ArgumentOutOfRangeException ex){System.Console.WriteLine(ex.Message);}
+            catch (ArgumentNullException) {ConsoleHelper.PrintError("Вы не ввели имя!");}
+            catch(ArgumentOutOfRangeException){ConsoleHelper.PrintError("Приоритет должен быть от 1 до 5.");}
+            catch (System.FormatException) {ConsoleHelper.PrintError("Не верный формат ввода.");}
         }
 
         public List<TaskItem> ListTasks()
@@ -34,6 +42,24 @@ namespace csharpik
                 System.Console.WriteLine(el.ToString());
             }
         }
-        
+
+
+        public void FindTask()
+        {
+            int id = 0;
+            try{
+            System.Console.WriteLine("Введите номер задачи задачи котрую хотите найти.");
+            id = Convert.ToInt32(Console.ReadLine());
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if(task == null)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            System.Console.WriteLine(task);
+            } 
+            catch(ArgumentOutOfRangeException){ConsoleHelper.PrintError($"Задачи №{id} нету.");}
+            catch (FormatException) {ConsoleHelper.PrintError("Не верный формат ввода.");}
+        }
+
     }
 }

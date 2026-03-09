@@ -16,16 +16,19 @@ namespace csharpik
             //TODO 5 - Статистика.
             //TODO 6 - Удалить задачу.
 
-            string[] menu = {
+            string[] menu = {   
+            
             "1 - Создать задачу.",
             "2 - Просмотр списка задач.",
-            // "3 - Смена статуса.",
-            "0 - Выход.",
+            "3 - Найти задачу.",
+            "0 - Выход.\n",
             };
             bool stop = false;
             TaskManager taskManager = new TaskManager();
             while (!stop)
             {
+                ConsoleHelper.PrintSuccess("\nMENU");
+                System.Console.WriteLine(new string('-', 30));
                 Print("Выберите действие: ");
                 foreach(string line in menu)
                 {
@@ -35,6 +38,7 @@ namespace csharpik
                 switch (a)
                 {
                     case "0":
+                        ConsoleHelper.PrintWarning("Выход...");
                         stop = true;
                         break;
 
@@ -46,11 +50,12 @@ namespace csharpik
                         taskManager.printList();
                         break;
 
+                        case "3":
+                        taskManager.FindTask();
+                        break;
+
                 }
                 ;
-
-
-
             }
         }
     }
