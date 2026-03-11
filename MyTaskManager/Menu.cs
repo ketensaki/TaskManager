@@ -2,37 +2,29 @@ namespace csharpik
 {
     class Menu
     {
-
-        public void Print(string value)
+        // private TaskManager? taskManager;
+        public void ConsoleMenu(TaskManager taskManager, TaskMenu tmenu)
         {
-            System.Console.WriteLine(value);
-        }
+            //TODO: 4 - Фильтр задач по статусу.
+            //TODO 5 - Фильтр по приоритету.
+            //TODO 6 - Статистика.
 
+            string[] menu = {
 
-        public void ConsoleMenu()
-        {
-            //TODO: 3 - Фильтр задач по статусу.
-            //TODO 4 - Фильтр по приоритету.
-            //TODO 5 - Статистика.
-            //TODO 6 - Удалить задачу.
-
-            string[] menu = {   
-            
             "1 - Создать задачу.",
             "2 - Просмотр списка задач.",
-            "3 - Найти задачу.",
+            "3 - Выбрать задачу.",
             "0 - Выход.",
             };
             bool stop = false;
-            TaskManager taskManager = new TaskManager();
             while (!stop)
             {
                 ConsoleHelper.PrintSuccess("\nMENU");
                 System.Console.WriteLine(new string('-', 30));
-                Print("Выберите действие: ");
-                foreach(string line in menu)
+                System.Console.WriteLine("Выберите действие: ");
+                foreach (string line in menu)
                 {
-                    Print(line);
+                    System.Console.WriteLine(line);
                 }
                 System.Console.WriteLine(new string('-', 30));
                 string? a = Console.ReadLine();
@@ -51,13 +43,30 @@ namespace csharpik
                         taskManager.printList();
                         break;
 
-                        case "3":
-                        taskManager.FindTask();
+                    case "3":
+                        var task = taskManager.FindTask();
+                        if(task != null)
+                        {
+                            tmenu.TaskConsoleMenu(taskManager, task);
+                        }
+                        break;
+                    
+                    default:
+                        ConsoleHelper.PrintError("Неверный пункт меню.");
+                        BackToMenu();
                         break;
 
                 }
                 ;
+                Console.Clear();
             }
         }
+
+        public static void BackToMenu()
+        {
+            ConsoleHelper.PrintWarning("Нажмиите ENTER для возврата в меню.");
+            System.Console.ReadLine();
+        }
+
     }
 }

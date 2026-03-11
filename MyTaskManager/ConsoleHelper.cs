@@ -22,5 +22,12 @@ namespace csharpik
         Console.WriteLine(message);
         Console.ResetColor();
     }
+    public static void PrintSuccessTask(TaskItem task)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(task);
+        Console.ResetColor();
+    }
+
     }
 }

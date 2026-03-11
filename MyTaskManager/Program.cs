@@ -11,8 +11,11 @@ namespace csharpik
             Console.OutputEncoding = Encoding.GetEncoding(1251);
             Console.InputEncoding = Encoding.GetEncoding(1251);
 
+            TaskManager manager = new TaskManager();
+            TaskMenu tmenu = new TaskMenu();
             Menu menu = new();
-            menu.ConsoleMenu();
+
+            menu.ConsoleMenu(manager, tmenu);
 
         }
     }
