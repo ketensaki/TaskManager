@@ -6,6 +6,7 @@ namespace csharpik
         {
             string[] menu = {
             "1 - Удалить задачу.",
+            "2 - Изменить статус.",
             "0 - Основное меню.",
             };
             bool stop = false;
@@ -29,6 +30,11 @@ namespace csharpik
 
                     case "1":
                         taskManager.DeleteTask(task);
+                        stop = true;
+                        break;
+
+                        case "2":
+                        taskManager.ChangeStatus(task);
                         stop = true;
                         break;
                     

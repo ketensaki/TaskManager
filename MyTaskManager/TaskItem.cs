@@ -14,6 +14,7 @@ namespace csharpik
         public int Id { get; private set; }
         public string? title { get; private set; }
         public TaskStatus status { get; private set; }
+        public TaskStatus Status{set{status = value;}}
         private int? priority;
         public int? Priority { get { return priority; } set { priority = value; } }
         public DateTime createdAt { get; private set; }

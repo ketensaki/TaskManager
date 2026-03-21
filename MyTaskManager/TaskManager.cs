@@ -1,4 +1,5 @@
 using System.Data.Common;
+using System.Net;
 
 namespace csharpik
 {
@@ -114,6 +115,52 @@ namespace csharpik
             }
 
         }
+
+        public void ChangeStatus(TaskItem task)
+        {
+            System.Console.WriteLine("Какой статус вы хотите установить?");
+            string[] statuses = {"1 - New",
+            "2 - InProgress",
+            "3 - Done",
+            "4 - Cancelled"};
+            foreach(string el in statuses)
+            {
+                System.Console.WriteLine(el);
+            }
+
+            int NewStatus = Convert.ToInt32(Console.ReadLine());
+
+            switch (NewStatus){
+                case 1:
+                    task.Status = TaskStatus.New;
+                    ConsoleHelper.PrintSuccess("Статус изменен.");
+                    Menu.BackToMenu();
+                    break;
+                case 2:
+                    task.Status = TaskStatus.InProgress;
+                    ConsoleHelper.PrintSuccess("Статус изменен");
+                    Menu.BackToMenu();
+                    break;
+                case 3:
+                    task.Status = TaskStatus.Done;
+                    ConsoleHelper.PrintSuccess("Статус изменен");
+                    Menu.BackToMenu();
+                    break;
+                case 4:
+                    task.Status = TaskStatus.Cancelled;
+                    ConsoleHelper.PrintSuccess("Статус изменен");
+                    Menu.BackToMenu();
+                    break;
+            
+                default:
+                    ConsoleHelper.PrintError("Ввод некоректный.");
+                    Menu.BackToMenu();
+                    break;
+
+            }
+
+        }
+
 
     }
 }
