@@ -123,14 +123,15 @@ namespace csharpik
             "2 - InProgress",
             "3 - Done",
             "4 - Cancelled"};
-            foreach(string el in statuses)
+            foreach (string el in statuses)
             {
                 System.Console.WriteLine(el);
             }
 
             int NewStatus = Convert.ToInt32(Console.ReadLine());
 
-            switch (NewStatus){
+            switch (NewStatus)
+            {
                 case 1:
                     task.Status = TaskStatus.New;
                     ConsoleHelper.PrintSuccess("Статус изменен.");
@@ -151,16 +152,35 @@ namespace csharpik
                     ConsoleHelper.PrintSuccess("Статус изменен");
                     Menu.BackToMenu();
                     break;
-            
+
                 default:
                     ConsoleHelper.PrintError("Ввод некоректный.");
                     Menu.BackToMenu();
                     break;
 
             }
-
         }
 
+        public void ChangePriority(TaskItem task)
+        {
+
+            try
+            {
+                System.Console.WriteLine("Введите новый приоритет от 1 до 5");
+                int newPriority = Convert.ToInt32(Console.ReadLine());
+
+                if (newPriority < 1 || newPriority > 5)
+                    throw new ArgumentOutOfRangeException();
+
+                task.Priority = newPriority;
+                ConsoleHelper.PrintSuccess("Приоритет изменен.");
+                
+            }
+            catch (ArgumentOutOfRangeException){ConsoleHelper.PrintError("Не верный приоритет.");}
+            catch (FormatException){ConsoleHelper.PrintError("Не верный формат ввода.");}
+
+            Menu.BackToMenu();
+        }
 
     }
 }

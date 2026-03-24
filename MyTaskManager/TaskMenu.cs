@@ -7,6 +7,7 @@ namespace csharpik
             string[] menu = {
             "1 - Удалить задачу.",
             "2 - Изменить статус.",
+            "3 - Изменить приоритет.",
             "0 - Основное меню.",
             };
             bool stop = false;
@@ -33,11 +34,16 @@ namespace csharpik
                         stop = true;
                         break;
 
-                        case "2":
+                    case "2":
                         taskManager.ChangeStatus(task);
                         stop = true;
                         break;
-                    
+
+                    case "3":
+                        taskManager.ChangePriority(task);
+                        stop = true;
+                        break;
+
                     default:
                         ConsoleHelper.PrintError("Неверный пункт меню.");
                         Menu.BackToMenu();
@@ -46,7 +52,7 @@ namespace csharpik
                 }
                 ;
                 Console.Clear();
-            }        
+            }
         }
     }
 }
