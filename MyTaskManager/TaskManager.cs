@@ -182,5 +182,26 @@ namespace csharpik
             Menu.BackToMenu();
         }
 
+
+        public void FilterByStatus()
+        {
+            var result = tasks.Where(t => t.Status != TaskStatus.Done).ToList();
+            foreach(var el in result)
+            {
+                System.Console.WriteLine(el);
+            }
+            Menu.BackToMenu();
+        }
+
+        public void FilterByHighPriority()
+        {
+            var result = tasks.Where(t => t.Priority >= 4).ToList();
+            foreach(var el in result)
+            {
+                System.Console.WriteLine(el);
+            }
+            Menu.BackToMenu();
+        }
+
     }
 }

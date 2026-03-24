@@ -5,15 +5,14 @@ namespace csharpik
         // private TaskManager? taskManager;
         public void ConsoleMenu(TaskManager taskManager, TaskMenu tmenu)
         {
-            //TODO: 4 - Фильтр задач по статусу.
-            //TODO 5 - Фильтр по приоритету.
-            //TODO 6 - Статистика.
-
+        
             string[] menu = {
 
             "1 - Создать задачу.",
             "2 - Просмотр списка задач.",
             "3 - Выбрать задачу.",
+            "4 - Незавершенные задачи.",
+            "5 - Приоритетные задачи.",
             "0 - Выход.",
             };
             bool stop = false;
@@ -49,6 +48,14 @@ namespace csharpik
                         {
                             tmenu.TaskConsoleMenu(taskManager, task);
                         }
+                        break;
+
+                    case "4":
+                        taskManager.FilterByStatus();
+                        break;
+                        
+                    case "5":
+                        taskManager.FilterByHighPriority();
                         break;
                     
                     default:
